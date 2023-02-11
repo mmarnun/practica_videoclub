@@ -41,6 +41,9 @@ where a.socio = s.socio
 group by s.nombre;
 
 9. Mostrar el precio que ha pagado el socio número al alquilar la película 4.
+select p.precio, s.socio
+from peliculas p, socios s, alquiler a
+where s.socio = a.socio and p.pelicula = a.pelicula and p.pelicula LIKE '4';
 
 
 10. Mostrar la lista de películas que no han sido alquiladas.
@@ -88,4 +91,23 @@ order by s.socio;
 han gastado más de 5 euros en el videoclub
 select s.nombre, s.socio, sum(p.precio)
 from peliculas p, socios s, alquiler a
-where p.pelicula = a.pelicula and s.socio = a.socio and 
+where p.pelicula = a.pelicula and s.socio = a.socio
+group by s.nombre, s.socio
+having sum(p.precio) > 5;
+
+18. Mostrar las fechas en que ha sido alquilada la película “Desperado”
+select a.fecha_alquiler
+from alquiler a, socios s, peliculas p
+where a.socio = s.socio and a.pelicula = p.pelicula and p.titulo LIKE 'Desperado';
+
+19. Mostrar la lista de películas que ha alquilado el socio con DNI 27711498D.
+select p.titulo
+from peliculas p, socios s, alquiler a
+where p.pelicula = a.pelicula and s.socio = a.socio and s.dni LIKE '27711498D';
+
+20. ¿Cúal es la pélicula española más alquilada?
+select p.titulo, count(a.pelicula)
+from peliculas p, alquiler a
+where a.pelicula = p.pelicula and p.pais LIKE 'Espana'
+group by p.titulo
+order by count(a.pelicula);
