@@ -59,3 +59,5 @@ INSERT INTO alquiler VALUES ('4','5',to_date('2011-01-01', 'yyyy-mm-dd'),to_date
 INSERT INTO alquiler VALUES ('2','2',to_date('2011-01-21', 'yyyy-mm-dd'),NULL);
 INSERT INTO alquiler VALUES ('5','1',to_date('2011-01-24', 'yyyy-mm-dd'),NULL);
 INSERT INTO alquiler VALUES ('1','7',to_date('2011-01-22', 'yyyy-mm-dd'),to_date('2011-01-23', 'yyyy-mm-dd'));
+
+INSERT INTO alquiler VALUES ('1','3',to_date('2011-01-22', 'yyyy-mm-dd'),to_date('2011-01-23', 'yyyy-mm-dd'));

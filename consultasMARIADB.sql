@@ -104,10 +104,15 @@ where a.socio = s.socio and a.pelicula = p.pelicula and p.titulo LIKE 'Desperado
 select p.titulo
 from peliculas p, socios s, alquiler a
 where p.pelicula = a.pelicula and s.socio = a.socio and s.dni LIKE '27711498D';
-
+*
 20. ¿Cúal es la pélicula española más alquilada?
 select p.titulo, count(a.pelicula)
 from peliculas p, alquiler a
 where a.pelicula = p.pelicula and p.pais LIKE 'Espana'
 group by p.titulo
-order by count(a.pelicula);
+having count(a.pelicula) = (select max(count(pelicula))
+                            from alquiler
+                            where pelicula in (select pelicula
+                                                from peliculas
+                                                where pais = 'Espana')
+                            group by pelicula);
